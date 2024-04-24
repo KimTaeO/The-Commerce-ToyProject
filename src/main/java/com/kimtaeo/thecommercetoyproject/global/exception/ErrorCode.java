@@ -6,7 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
-    ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다", 409);
+    ALREADY_EXIST_EMAIL("이미 존재하는 이메일입니다", 409),
+    ALREADY_EXIST_PHONENUMBER("이미 존재하는 전화번호입니다", 409);
 
     private final String message;
     private final Integer status;
