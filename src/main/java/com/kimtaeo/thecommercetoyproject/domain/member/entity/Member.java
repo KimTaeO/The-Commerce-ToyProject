@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -32,6 +34,10 @@ public class Member {
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private String name;
 
-    @Column(name = "phone_number", columnDefinition = "VARCHAR(20)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
     private String phoneNumber;
+
+    @CreatedDate
+    @Column(columnDefinition = "DATETIME(6)")
+    private LocalDateTime createdAt;
 }
