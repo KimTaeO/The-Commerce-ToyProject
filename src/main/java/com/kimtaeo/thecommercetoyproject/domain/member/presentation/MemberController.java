@@ -31,9 +31,9 @@ public class MemberController {
             @RequestParam Integer pageSize,
             @RequestParam SortType sort
     ) {
-        PagedMembersResponse pagedMembersResponse = memberService.queryMembers(page, pageSize, sort);
+        PagedMembersResponse response = memberService.queryMembers(page, pageSize, sort);
 
-        return ResponseEntity.status(HttpStatus.OK).body(pagedMembersResponse);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PatchMapping("{member_id}")
