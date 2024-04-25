@@ -4,7 +4,9 @@ import com.kimtaeo.thecommercetoyproject.domain.member.entity.Member;
 import com.kimtaeo.thecommercetoyproject.domain.member.enums.SortType;
 import com.kimtaeo.thecommercetoyproject.domain.member.exception.AlreadyExistEmailException;
 import com.kimtaeo.thecommercetoyproject.domain.member.exception.AlreadyExistPhoneNumberException;
+import com.kimtaeo.thecommercetoyproject.domain.member.exception.MemberNotFoundException;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.SignUpRequest;
+import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.UpdateMemberRequest;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.response.MemberResponse;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.response.PagedMembersResponse;
 import com.kimtaeo.thecommercetoyproject.domain.member.repository.MemberRepository;
@@ -69,5 +71,33 @@ public class MemberServiceImpl implements MemberService {
         );
 
         return new PagedMembersResponse(pagedResponse);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public MemberResponse updateMember(String memberId, UpdateMemberRequest updateMemberRequest) {
+        Member member = memberRepository.findByMemberId(memberId)
+                .orElseThrow(() -> new MemberNotFoundException(String.format("해당 회원을 찾을 수 없습니다. [ memberId = %s]", memberId)));
+
+        Member updatedMember = Member.builder()
+                .id(member.getId())
+                .memberId(memberId)
+                .email(updateMemberRequest.getEmail())
+                .password(updateMemberRequest.getPassword())
+                .name(updateMemberRequest.getName())
+                .phoneNumber(updateMemberRequest.getPhoneNumber())
+                .createdAt(member.getCreatedAt())
+                .build();
+
+        Member savedMember = memberRepository.save(updatedMember);
+
+        return MemberResponse.builder()
+                .id(savedMember.getId())
+                .memberId(savedMember.getMemberId())
+                .email(savedMember.getEmail())
+                .password(savedMember.getPassword())
+                .name(savedMember.getName())
+                .phoneNumber(savedMember.getPhoneNumber())
+                .build();
     }
 }
