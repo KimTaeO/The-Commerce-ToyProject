@@ -35,6 +35,7 @@ public class SignUpMemberServiceImpl implements SignUpMemberService {
                 .memberId(signUpRequest.getMemberId())
                 .email(signUpRequest.getEmail())
                 .password(signUpRequest.getPassword())
+                .nickname(signUpRequest.getNickname())
                 .name(signUpRequest.getName())
                 .phoneNumber(signUpRequest.getPhoneNumber())
                 .build();

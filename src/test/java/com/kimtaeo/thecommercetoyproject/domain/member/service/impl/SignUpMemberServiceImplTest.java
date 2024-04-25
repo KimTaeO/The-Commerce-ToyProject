@@ -34,6 +34,7 @@ public class SignUpMemberServiceImplTest {
     String memberId = "asdf1234";
     String email = "asdf1234@gmail.com";
     String password = "qwer1234!";
+    String nickname = "나는야홍길동";
     String name = "홍길동";
     String phoneNumber = "01012345678";
     LocalDateTime createdAt = LocalDateTime.MAX;
@@ -42,6 +43,7 @@ public class SignUpMemberServiceImplTest {
             .memberId(memberId)
             .email(email)
             .password(password)
+            .nickname(nickname)
             .name(name)
             .phoneNumber(phoneNumber)
             .build();

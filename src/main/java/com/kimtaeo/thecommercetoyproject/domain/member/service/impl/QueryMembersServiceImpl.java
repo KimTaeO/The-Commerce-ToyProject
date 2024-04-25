@@ -34,6 +34,7 @@ public class QueryMembersServiceImpl implements QueryMembersService {
                         .memberId(member.getMemberId())
                         .email(member.getEmail())
                         .password(member.getPassword())
+                        .nickname(member.getNickname())
                         .name(member.getName())
                         .phoneNumber(member.getPhoneNumber())
                         .build()

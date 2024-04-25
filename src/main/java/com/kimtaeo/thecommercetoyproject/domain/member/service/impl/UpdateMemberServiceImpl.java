@@ -26,6 +26,7 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
                 .memberId(memberId)
                 .email(updateMemberRequest.getEmail())
                 .password(updateMemberRequest.getPassword())
+                .nickname(updateMemberRequest.getNickname())
                 .name(updateMemberRequest.getName())
                 .phoneNumber(updateMemberRequest.getPhoneNumber())
                 .createdAt(member.getCreatedAt())
@@ -38,6 +39,7 @@ public class UpdateMemberServiceImpl implements UpdateMemberService {
                 .memberId(savedMember.getMemberId())
                 .email(savedMember.getEmail())
                 .password(savedMember.getPassword())
+                .nickname(savedMember.getNickname())
                 .name(savedMember.getName())
                 .phoneNumber(savedMember.getPhoneNumber())
                 .build();

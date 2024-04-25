@@ -34,6 +34,9 @@ public class Member {
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String password;
 
+    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
+    private String nickname;
+
     @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private String name;
 
