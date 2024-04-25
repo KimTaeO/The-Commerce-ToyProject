@@ -2,6 +2,7 @@ package com.kimtaeo.thecommercetoyproject.domain.member.service.impl;
 
 import com.kimtaeo.thecommercetoyproject.domain.member.entity.Member;
 import com.kimtaeo.thecommercetoyproject.domain.member.exception.AlreadyExistEmailException;
+import com.kimtaeo.thecommercetoyproject.domain.member.exception.AlreadyExistMemberIdException;
 import com.kimtaeo.thecommercetoyproject.domain.member.exception.AlreadyExistPhoneNumberException;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.SignUpRequest;
 import com.kimtaeo.thecommercetoyproject.domain.member.repository.MemberRepository;
@@ -21,7 +22,7 @@ public class SignUpMemberServiceImpl implements SignUpMemberService {
     @Override
     public void signUp(SignUpRequest signUpRequest) {
         if(memberRepository.existsByMemberId(signUpRequest.getMemberId()))
-            throw new AlreadyExistPhoneNumberException(String.format("이미 등록된 아이디 입니다. [ memberId = %s ]", signUpRequest.getMemberId()));
+            throw new AlreadyExistMemberIdException(String.format("이미 등록된 아이디 입니다. [ memberId = %s ]", signUpRequest.getMemberId()));
 
         if(memberRepository.existsByEmail(signUpRequest.getEmail()))
             throw new AlreadyExistEmailException(String.format("이미 등록된 이메일 입니다. [ email = %s ]", signUpRequest.getEmail()));
