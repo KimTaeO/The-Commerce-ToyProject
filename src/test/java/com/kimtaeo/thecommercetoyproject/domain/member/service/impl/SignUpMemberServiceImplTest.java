@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 @DisplayName("Given(signUpRequest 가 주어지면)")
 public class SignUpMemberServiceImplTest {
     @InjectMocks
-    private SignUpMemberServiceImpl memberService;
+    private SignUpMemberServiceImpl signUpMemberService;
     @Mock
     private MemberRepository memberRepository;
 
@@ -66,7 +66,7 @@ public class SignUpMemberServiceImplTest {
         given(memberRepository.existsByPhoneNumber(any())).willReturn(false);
         given(memberRepository.save(any())).willReturn(member);
 
-        assertDoesNotThrow(() -> memberService.signUp(signUpRequest));
+        assertDoesNotThrow(() -> signUpMemberService.signUp(signUpRequest));
 
         // Then(Member가 저장이 되어야 한다)
         verify(memberRepository, times(1)).save(any(Member.class));
@@ -79,7 +79,7 @@ public class SignUpMemberServiceImplTest {
         given(memberRepository.existsByMemberId(any())).willReturn(true);
 
         // Then(AlreadyExistMemberIdException 이 발생해야 한다)
-        assertThrows(AlreadyExistMemberIdException.class, () -> memberService.signUp(signUpRequest));
+        assertThrows(AlreadyExistMemberIdException.class, () -> signUpMemberService.signUp(signUpRequest));
     }
 
     @Test
@@ -88,7 +88,7 @@ public class SignUpMemberServiceImplTest {
         given(memberRepository.existsByEmail(any())).willReturn(true);
 
         // Then(AlreadyExistEmailException 이 발생해야 한다)
-        assertThrows(AlreadyExistEmailException.class, () -> memberService.signUp(signUpRequest));
+        assertThrows(AlreadyExistEmailException.class, () -> signUpMemberService.signUp(signUpRequest));
     }
 
     @Test
@@ -97,6 +97,6 @@ public class SignUpMemberServiceImplTest {
         given(memberRepository.existsByPhoneNumber(any())).willReturn(true);
 
         // Then(AlreadyExistPhoneNumberException 이 발생해야 한다)
-        assertThrows(AlreadyExistPhoneNumberException.class, () -> memberService.signUp(signUpRequest));
+        assertThrows(AlreadyExistPhoneNumberException.class, () -> signUpMemberService.signUp(signUpRequest));
     }
 }
