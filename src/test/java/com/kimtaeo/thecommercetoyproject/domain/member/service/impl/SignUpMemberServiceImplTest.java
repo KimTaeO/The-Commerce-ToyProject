@@ -69,4 +69,14 @@ public class SignUpMemberServiceImplTest {
         // Then(Member가 저장이 되어야 한다)
         verify(memberRepository, times(1)).save(any(Member.class));
     }
+
+    @Test
+    @DisplayName("When(이미 존재하는 memberId로 signUp 요청 시)")
+    void validExistsByMemberId() {
+
+        given(memberRepository.existsByMemberId(any())).willReturn(true);
+
+        // Then(AlreadyExistMemberIdException 이 발생해야 한다)
+        assertThrows(AlreadyExistMemberIdException.class, () -> memberService.signUp(signUpRequest));
+    }
 }
