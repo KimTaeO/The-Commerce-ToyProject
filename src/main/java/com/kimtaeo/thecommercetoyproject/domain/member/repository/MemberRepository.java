@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface MemberRepository extends CrudRepository<Member, UUID> {
@@ -13,4 +14,5 @@ public interface MemberRepository extends CrudRepository<Member, UUID> {
     Boolean existsByPhoneNumber(String phoneNumber);
     Boolean existsByEmail(String email);
     Page<Member> findAll(Pageable pageable);
+    Optional<Member> findByMemberId(String memberId);
 }
