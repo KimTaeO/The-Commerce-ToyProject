@@ -49,6 +49,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public PagedMembersResponse queryMembers(Integer page, Integer pageSize, SortType sortType) {
         Sort sort = Sort.by(Sort.Order.asc(sortType.getStr()));
 
