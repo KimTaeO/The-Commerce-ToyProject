@@ -5,7 +5,9 @@ import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.UpdateMemberRequest;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.response.MemberResponse;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.response.PagedMembersResponse;
-import com.kimtaeo.thecommercetoyproject.domain.member.service.MemberService;
+import com.kimtaeo.thecommercetoyproject.domain.member.service.QueryMembersService;
+import com.kimtaeo.thecommercetoyproject.domain.member.service.SignUpMemberService;
+import com.kimtaeo.thecommercetoyproject.domain.member.service.UpdateMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,13 @@ import javax.validation.Valid;
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
+    private final SignUpMemberService signUpMemberService;
+    private final QueryMembersService queryMembersService;
+    private final UpdateMemberService updateMemberService;
 
     @PostMapping("/join")
     public ResponseEntity<Void> signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
-        memberService.signUp(signUpRequest);
+        signUpMemberService.signUp(signUpRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -31,7 +35,7 @@ public class MemberController {
             @RequestParam Integer pageSize,
             @RequestParam SortType sort
     ) {
-        PagedMembersResponse response = memberService.queryMembers(page, pageSize, sort);
+        PagedMembersResponse response = queryMembersService.queryMembers(page, pageSize, sort);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -41,7 +45,7 @@ public class MemberController {
             @PathVariable("member_id") String memberId,
             @RequestBody @Valid UpdateMemberRequest updateMemberRequest
     ) {
-        MemberResponse response = memberService.updateMember(memberId, updateMemberRequest);
+        MemberResponse response = updateMemberService.updateMember(memberId, updateMemberRequest);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
