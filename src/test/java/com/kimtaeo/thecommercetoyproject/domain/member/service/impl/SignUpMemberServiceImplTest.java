@@ -88,4 +88,13 @@ public class SignUpMemberServiceImplTest {
         // Then(AlreadyExistEmailException 이 발생해야 한다)
         assertThrows(AlreadyExistEmailException.class, () -> memberService.signUp(signUpRequest));
     }
+
+    @Test
+    @DisplayName("When(이미 존재하는 phoneNumber로 signUp 요청 시)")
+    void validExistsByPhoneNumber() {
+        given(memberRepository.existsByPhoneNumber(any())).willReturn(true);
+
+        // Then(AlreadyExistPhoneNumberException 이 발생해야 한다)
+        assertThrows(AlreadyExistPhoneNumberException.class, () -> memberService.signUp(signUpRequest));
+    }
 }
