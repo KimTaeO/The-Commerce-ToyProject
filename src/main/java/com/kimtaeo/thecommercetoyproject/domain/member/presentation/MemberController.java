@@ -2,6 +2,8 @@ package com.kimtaeo.thecommercetoyproject.domain.member.presentation;
 
 import com.kimtaeo.thecommercetoyproject.domain.member.enums.SortType;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.SignUpRequest;
+import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request.UpdateMemberRequest;
+import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.response.MemberResponse;
 import com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.response.PagedMembersResponse;
 import com.kimtaeo.thecommercetoyproject.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +34,15 @@ public class MemberController {
         PagedMembersResponse pagedMembersResponse = memberService.queryMembers(page, pageSize, sort);
 
         return ResponseEntity.status(HttpStatus.OK).body(pagedMembersResponse);
+    }
+
+    @PatchMapping("{member_id}")
+    public ResponseEntity<MemberResponse> updateMember(
+            @PathVariable("member_id") String memberId,
+            @RequestBody @Valid UpdateMemberRequest updateMemberRequest
+    ) {
+        MemberResponse response = memberService.updateMember(memberId, updateMemberRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
