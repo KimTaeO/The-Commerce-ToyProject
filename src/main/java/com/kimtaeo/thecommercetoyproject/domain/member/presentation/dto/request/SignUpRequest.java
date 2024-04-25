@@ -1,5 +1,7 @@
 package com.kimtaeo.thecommercetoyproject.domain.member.presentation.dto.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class SignUpRequest {
     @NotBlank
