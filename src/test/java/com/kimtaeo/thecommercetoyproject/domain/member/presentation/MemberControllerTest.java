@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.test.web.servlet.MockMvc;
@@ -39,6 +40,8 @@ public class MemberControllerTest {
     private QueryMembersService queryMembersService;
     @MockBean
     private UpdateMemberService updateMemberService;
+    @MockBean
+    private JpaMetamodelMappingContext jpaMetamodelMappingContext;
 
     @DisplayName("signUpMember web layer 테스트 코드입니다.")
     @Test
