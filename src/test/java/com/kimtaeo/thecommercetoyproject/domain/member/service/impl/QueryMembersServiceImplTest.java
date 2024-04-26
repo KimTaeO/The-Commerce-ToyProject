@@ -66,8 +66,8 @@ public class QueryMembersServiceImplTest {
             new PageImpl<>(Arrays.asList(memberResponse))
     );
 
-    @Test
     @DisplayName("When(members 요청 시)")
+    @Test
     void queryMembersTest() {
         given(memberRepository.findAll(any(Pageable.class))).willReturn(new PageImpl<>(Arrays.asList(member)));
 

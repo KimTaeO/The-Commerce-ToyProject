@@ -58,8 +58,8 @@ public class SignUpMemberServiceImplTest {
             .createdAt(createdAt)
             .build();
 
-    @Test
     @DisplayName("When(Member 추가 시)")
+    @Test
     void signUpTest() {
         given(memberRepository.existsByMemberId(any())).willReturn(false);
         given(memberRepository.existsByEmail(any())).willReturn(false);
@@ -72,8 +72,8 @@ public class SignUpMemberServiceImplTest {
         verify(memberRepository, times(1)).save(any(Member.class));
     }
 
-    @Test
     @DisplayName("When(이미 존재하는 memberId로 signUp 요청 시)")
+    @Test
     void validateExistByMemberId() {
 
         given(memberRepository.existsByMemberId(any())).willReturn(true);
@@ -82,8 +82,8 @@ public class SignUpMemberServiceImplTest {
         assertThrows(AlreadyExistMemberIdException.class, () -> signUpMemberService.signUp(signUpRequest));
     }
 
-    @Test
     @DisplayName("When(이미 존재하는 email로 signUp 요청 시)")
+    @Test
     void validateExistEmail() {
         given(memberRepository.existsByEmail(any())).willReturn(true);
 
@@ -91,8 +91,8 @@ public class SignUpMemberServiceImplTest {
         assertThrows(AlreadyExistEmailException.class, () -> signUpMemberService.signUp(signUpRequest));
     }
 
-    @Test
     @DisplayName("When(이미 존재하는 phoneNumber로 signUp 요청 시)")
+    @Test
     void validateExistByPhoneNumber() {
         given(memberRepository.existsByPhoneNumber(any())).willReturn(true);
 

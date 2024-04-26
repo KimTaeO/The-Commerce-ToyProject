@@ -83,8 +83,8 @@ public class UpdateMemberServiceImplTest {
             .phoneNumber(updatedMember.getPhoneNumber())
             .build();
 
-    @Test
     @DisplayName("When(Member 수정 시)")
+    @Test
     void updateMemberTest() {
         given(memberRepository.findByMemberId(any())).willReturn(Optional.ofNullable(member));
         given(memberRepository.save(any())).willReturn(updatedMember);
@@ -102,8 +102,8 @@ public class UpdateMemberServiceImplTest {
         );
     }
 
-    @Test
     @DisplayName("When(유효하지 않은 memberId 라면)")
+    @Test
     void validateInvalidMemberId() {
         given(memberRepository.findByMemberId(invalidMemberId)).willReturn(Optional.empty());
 
