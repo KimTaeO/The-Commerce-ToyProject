@@ -74,7 +74,7 @@ public class SignUpMemberServiceImplTest {
 
     @Test
     @DisplayName("When(이미 존재하는 memberId로 signUp 요청 시)")
-    void validExistsByMemberId() {
+    void validateExistByMemberId() {
 
         given(memberRepository.existsByMemberId(any())).willReturn(true);
 
@@ -84,7 +84,7 @@ public class SignUpMemberServiceImplTest {
 
     @Test
     @DisplayName("When(이미 존재하는 email로 signUp 요청 시)")
-    void validExistsByEmail() {
+    void validateExistEmail() {
         given(memberRepository.existsByEmail(any())).willReturn(true);
 
         // Then(AlreadyExistEmailException 이 발생해야 한다)
@@ -93,7 +93,7 @@ public class SignUpMemberServiceImplTest {
 
     @Test
     @DisplayName("When(이미 존재하는 phoneNumber로 signUp 요청 시)")
-    void validExistsByPhoneNumber() {
+    void validateExistByPhoneNumber() {
         given(memberRepository.existsByPhoneNumber(any())).willReturn(true);
 
         // Then(AlreadyExistPhoneNumberException 이 발생해야 한다)
