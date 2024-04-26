@@ -101,4 +101,13 @@ public class UpdateMemberServiceImplTest {
                 () -> assertEquals(memberResponse.getPhoneNumber(), result.getPhoneNumber())
         );
     }
+
+    @Test
+    @DisplayName("When(유효하지 않은 memberId 라면)")
+    void validateInvalidMemberId() {
+        given(memberRepository.findByMemberId(invalidMemberId)).willReturn(Optional.empty());
+
+        // Then(MemberNotFoundException 이 발생해야 한다)
+        assertThrows(MemberNotFoundException.class, () -> updateMemberServiceImpl.updateMember(invalidMemberId, updateMemberRequest));
+    }
 }
